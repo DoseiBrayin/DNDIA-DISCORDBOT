@@ -18,4 +18,16 @@ bot = commands.Bot(command_prefix='-',intents=intents) #Crea el bot
 async def ping(ctx):
     await ctx.send('I CAST FIREBALL 🔥')
 
+@bot.command(name='commands', help='Shows all available commands')
+async def commands_list(ctx):
+    command_list = []
+    for command in bot.commands:
+        if not command.hidden:
+            command_list.append((command.name, command.help))
+    command_list.sort()
+    response = "Available commands:\n"
+    for command_name, command_help in command_list:
+        response += f"- {command_name}: {command_help}\n"
+    await ctx.send(response)
+
 bot.run(TOKEN)
