@@ -5,6 +5,7 @@ from discord.ext import commands
 import os
 import discord
 import random
+from funtions import roll_dice
 
 load_dotenv() #Carga el archivo .env
 TOKEN = os.getenv('DISCORD_TOKEN') #Aqui va el token del bot
@@ -35,5 +36,11 @@ async def commands_list(ctx):
     for command_name, command_help in command_list:
         response += f"- {command_name}: {command_help}\n"
     await ctx.send(response)
+
+@bot.command(name='init', help='Rolls a initiative')
+async def initiative(ctx, dice:str='0'):
+    rolled_dice = roll_dice.roll(dice)
+    await ctx.send(f'Your dice is: {rolled_dice[0]} = initiative: {rolled_dice[1]}')
+
 
 bot.run(TOKEN)
