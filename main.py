@@ -14,6 +14,12 @@ intents.all() #Activa todas las intenciones
 
 bot = commands.Bot(command_prefix='-',intents=intents) #Crea el bot
 
+@bot.event
+async def on_ready():
+    activity = discord.Activity(type=discord.ActivityType.playing, name="I'M ON ROLL SESSION 🔥")
+    await bot.change_presence(activity=activity)
+    print(f'Bot is ready. Logged in as {bot.user}')
+
 @bot.command(name='Ping',help='Return anything')
 async def ping(ctx):
     await ctx.send('I CAST FIREBALL 🔥')
