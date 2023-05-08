@@ -16,6 +16,8 @@ intents.guilds = True  # Permite recibir eventos de servidores (guilds)
 intents.members = True  # Permite recibir eventos de miembros (usuarios) en el servidor
 intents.reactions = True  # Permite recibir eventos de reacciones a mensajes
 intents.typing = True  # Permite recibir eventos de tipo de teclado
+intents.message_content = True  # Permite recibir eventos de mensajes
+intents.guild_messages = True  # Permite recibir eventos de mensajes en el servidor
 intents.all()
 
 bot = commands.Bot(command_prefix='!',intents=intents) #Crea el bot
