@@ -11,17 +11,21 @@ load_dotenv() #Carga el archivo .env
 TOKEN = os.getenv('DISCORD_TOKEN') #Aqui va el token del bot
 
 intents = discord.Intents.default()  # Crea un objeto Intents
-intents.all() #Activa todas las intenciones
+intents.messages = True  # Permite recibir eventos de mensajes
+intents.guilds = True  # Permite recibir eventos de servidores (guilds)
+intents.members = True  # Permite recibir eventos de miembros (usuarios) en el servidor
+intents.reactions = True  # Permite recibir eventos de reacciones a mensajes
+intents.typing = True  # Permite recibir eventos de tipo de teclado
+intents.all()
 
-bot = commands.Bot(command_prefix='-',intents=intents) #Crea el bot
-
+bot = commands.Bot(command_prefix='!',intents=intents) #Crea el bot
 @bot.event
 async def on_ready():
     activity = discord.Activity(type=discord.ActivityType.playing, name="I'M ON ROLL SESSION 🔥")
     await bot.change_presence(activity=activity)
     print(f'Bot is ready. Logged in as {bot.user}')
-
-@bot.command(name='Ping',help='Return anything')
+    
+@bot.command(name='ping',help='Return anything')
 async def ping(ctx):
     await ctx.send('I CAST FIREBALL 🔥')
 
