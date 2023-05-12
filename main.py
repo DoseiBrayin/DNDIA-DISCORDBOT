@@ -5,7 +5,7 @@ from discord.ext import commands
 import os
 import discord
 import random
-from funtions import roll_dice
+from funtions import roll_dice,spells
 
 load_dotenv() #Carga el archivo .env
 TOKEN = os.getenv('DISCORD_TOKEN') #Aqui va el token del bot
@@ -48,5 +48,10 @@ async def initiative(ctx, dice:str='0'):
     rolled_dice = roll_dice.roll(dice)
     await ctx.send(f'Your dice is: {rolled_dice[0]} = initiative: {rolled_dice[1]}')
 
-
+@bot.command(name='spell_dice', help='Rolls a spell dice')
+async def spell_dice(ctx, name:str,level:int=0):
+    spell = spells.spell_dice(name,level)
+    print(spell)
+    await ctx.send(spell['damage'])
+    #await ctx.send(f'Your roll {name} on level {level}')
 bot.run(TOKEN)
