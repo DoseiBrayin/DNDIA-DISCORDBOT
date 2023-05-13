@@ -51,7 +51,6 @@ async def initiative(ctx, dice:str='0'):
 @bot.command(name='spell_dice', help='Rolls a spell dice')
 async def spell_dice(ctx, name:str,level:int=0):
     spell = spells.spell_dice(name,level)
-    print(spell)
-    await ctx.send(spell['damage'])
+    await ctx.send(f'You casting {name} type damage: {spell[0]} and your dice is {spell[1]}')
     #await ctx.send(f'Your roll {name} on level {level}')
 bot.run(TOKEN)
